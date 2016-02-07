@@ -112,29 +112,8 @@ function listenToTradeButtons(){
 
 function initialiseTradeMenuCalculator(actionType,tradingPlayer){
 	if (currentPlayersData){
-		var myPlayerData = currentPlayersData[myPlayer];
-		console.log(myPlayerData);
-		for(resource in myPlayerData){
-			$('.resource_buttons .your_resources #'+resource).html(myPlayerData[resource]);
-		}
-		$('.your_resources .resource_count').click(function(){
-			resourceDisplay = $(this);
-			resourceCount = parseInt($(this).html());
-			if (resourceCount > 0){
-				resourceDisplay.html(--resourceCount);
-			}
-		});
-		if(actionType == 'private' && tradingPlayer){
-			var tradingPlayerData = currentPlayersData[tradingPlayer];
-			$('.player_resources.others_resources .title').html(tradingPlayer + "'s Resources");
-			for(resource in tradingPlayerData){
-				$('.resource_buttons .others_resources #'+resource).html(tradingPlayerData[resource]);
-			}
-		} else if (actionType == 'public') {
-
-		} else if (actionType == 'bank') {
-			$('.player_resources.others_resources .title').html("Bank");
-		}
+		initialiseCalculatorView(actionType,tradingPlayer);
+		listenToMyResourceOfferButtons();
 	}
 	$('.overlay').click(function(){
 		$('.overlay').fadeOut();
@@ -144,9 +123,38 @@ function initialiseTradeMenuCalculator(actionType,tradingPlayer){
 		$('.overlay').fadeOut();
 		$('.trade_menu').fadeOut();
 	});
+	$('.bottom_button.clear').click(function(){
+		initialiseCalculatorView(actionType,tradingPlayer);
+	});
 }
 
+function listenToMyResourceOfferButtons(){
+	$('.your_resources .resource_count').click(function(){
+		resourceDisplay = $(this);
+		resourceCount = parseInt($(this).html());
+		if (resourceCount > 0){
+			resourceDisplay.html(--resourceCount);
+		}
+	});
+}
 
+function initialiseCalculatorView(actionType,tradingPlayer){
+	var myPlayerData = currentPlayersData[myPlayer];
+	for(resource in myPlayerData){
+		$('.resource_buttons .your_resources #'+resource).html(myPlayerData[resource]);
+	}
+	if(actionType == 'private' && tradingPlayer){
+		var tradingPlayerData = currentPlayersData[tradingPlayer];
+		$('.player_resources.others_resources .title').html(tradingPlayer + "'s Resources");
+		for(resource in tradingPlayerData){
+			$('.resource_buttons .others_resources #'+resource).html(tradingPlayerData[resource]);
+		}
+	} else if (actionType == 'public') {
+
+	} else if (actionType == 'bank') {
+		$('.player_resources.others_resources .title').html("Bank");
+	}
+}
 
 
 
