@@ -106,13 +106,13 @@ function listenToTradeButtons(){
 	$('.offer_panel').click(function(){
 		$('.overlay').fadeIn();
 		$('.trade_menu').fadeIn();
-		initialiseCalculatorView(actionType,tradingPlayer);
+		initialiseCalculatorView(tradingPlayer);
 	});
 	listenToCalculatorOfferButtons();
-	listenToCalculatorControlButtons(actionType,tradingPlayer);
+	listenToCalculatorControlButtons(tradingPlayer);
 }
 
-function listenToCalculatorControlButtons(actionType,tradingPlayer){
+function listenToCalculatorControlButtons(tradingPlayer){
 	$('.overlay').click(function(){
 		$('.overlay').fadeOut();
 		$('.trade_menu').fadeOut();
@@ -123,7 +123,7 @@ function listenToCalculatorControlButtons(actionType,tradingPlayer){
 		//TODO: package data properly and send to server
 	});
 	$('.bottom_button.clear').click(function(){
-		initialiseCalculatorView(actionType,tradingPlayer);
+		initialiseCalculatorView(tradingPlayer);
 	});
 }
 
@@ -138,7 +138,7 @@ function listenToCalculatorOfferButtons(){
 	});
 }
 
-function initialiseCalculatorView(actionType,tradingPlayer){
+function initialiseCalculatorView(tradingPlayer){
 	var myPlayerData = currentPlayersData[myPlayer];
 	for(resource in myPlayerData){
 		$('.resource_buttons .your_resources #'+resource).html(myPlayerData[resource]);
@@ -149,11 +149,16 @@ function initialiseCalculatorView(actionType,tradingPlayer){
 		for(resource in tradingPlayerData){
 			$('.resource_buttons .others_resources #'+resource).html(tradingPlayerData[resource]);
 		}
-	} else if (actionType == 'public') {
-
-	} else if (actionType == 'bank') {
-		$('.player_resources.others_resources .title').html("Bank");
+	} else {
+		if (actionType == "bank"){
+			$('.player_resources.others_resources .title').html("Bank");
+		} else {
+			$('.player_resources.others_resources .title').html("Open Request");
+		}
+		$('.others_resources').find('.resource_count').html(0);
+		$('.others_resources').find('.generator_count').html(0);
 	}
+
 }
 
 
