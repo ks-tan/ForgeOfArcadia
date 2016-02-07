@@ -106,15 +106,13 @@ function listenToTradeButtons(){
 	$('.offer_panel').click(function(){
 		$('.overlay').fadeIn();
 		$('.trade_menu').fadeIn();
-		initialiseTradeMenuCalculator(actionType,tradingPlayer);
+		initialiseCalculatorView(actionType,tradingPlayer);
 	});
+	listenToCalculatorOfferButtons();
+	listenToCalculatorControlButtons(actionType,tradingPlayer);
 }
 
-function initialiseTradeMenuCalculator(actionType,tradingPlayer){
-	if (currentPlayersData){
-		initialiseCalculatorView(actionType,tradingPlayer);
-		listenToMyResourceOfferButtons();
-	}
+function listenToCalculatorControlButtons(actionType,tradingPlayer){
 	$('.overlay').click(function(){
 		$('.overlay').fadeOut();
 		$('.trade_menu').fadeOut();
@@ -122,17 +120,19 @@ function initialiseTradeMenuCalculator(actionType,tradingPlayer){
 	$('.bottom_button.confirm').click(function(){
 		$('.overlay').fadeOut();
 		$('.trade_menu').fadeOut();
+		//TODO: package data properly and send to server
 	});
 	$('.bottom_button.clear').click(function(){
 		initialiseCalculatorView(actionType,tradingPlayer);
 	});
 }
 
-function listenToMyResourceOfferButtons(){
+function listenToCalculatorOfferButtons(){
 	$('.your_resources .resource_count').click(function(){
 		resourceDisplay = $(this);
 		resourceCount = parseInt($(this).html());
 		if (resourceCount > 0){
+			console.log("minus");
 			resourceDisplay.html(--resourceCount);
 		}
 	});
