@@ -128,12 +128,27 @@ function listenToCalculatorControlButtons(tradingPlayer){
 }
 
 function listenToCalculatorOfferButtons(){
+	var resourceOfferList = [];
+	//list MUST BE CLEARED when
+	// 1. traded
+	// 2. cleared
+	// Maybe better be put somewhere else
 	$('.your_resources .resource_count').click(function(){
 		resourceDisplay = $(this);
+		resourceType = $(this).attr('id');
 		resourceCount = parseInt($(this).html());
 		if (resourceCount > 0){
-			console.log("minus");
 			resourceDisplay.html(--resourceCount);
+			if(resourceOfferList[resourceType]){
+				resourceOfferList[resourceType]++;
+			} else {
+				resourceOfferList[resourceType] = 1;
+			}
+			var offerStatement = "";
+			for (name in resourceOfferList){
+				offerStatement = offerStatement + " " + resourceOfferList[name] + " " + name + " ";
+			}
+			$('.offering').html(offerStatement);
 		}
 	});
 }
