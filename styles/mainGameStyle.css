@@ -15,7 +15,6 @@ body, html {
 .build_buttons:hover,
 .trade_buttons:hover,
 .gather_button:hover,
-.offer_panel:hover,
 .trade_button:hover{
 	opacity: 0.7;
 }
@@ -387,7 +386,6 @@ body, html {
 	position: relative;
 	display: inline-block;
 	width: 15vw;
-	cursor: pointer;
 }
 
 .bottom_player_panels .more_options_panel .more_options .trade_offer .offer_panel .background {
@@ -395,6 +393,7 @@ body, html {
 	width: 15vw;
 	height: 4vw;
 	opacity: 0.5;
+	background-color: #000000;
 }
 
 .bottom_player_panels .more_options_panel .more_options .trade_offer .offer_panel .text {
@@ -433,6 +432,7 @@ body, html {
 	left: 14vw;
 	width: 3vw;
 	height: auto;
+	z-index: 100;
 }
 
 .trade_menu {

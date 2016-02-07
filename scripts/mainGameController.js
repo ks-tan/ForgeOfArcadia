@@ -102,13 +102,18 @@ function listenToTradeButtons(){
 		$('.player_button').removeClass('selected');
 		$(this).addClass('selected');
 		tradingPlayer = $(this).find($('.text')).html();
-	});
-	$('.offer_panel').click(function(){
-		$('.overlay').fadeIn();
-		$('.trade_menu').fadeIn();
-		initialiseCalculatorView(tradingPlayer);
+		$('.offer_panel.you_give .text').html("Offering");
+		initialiseCalculator(tradingPlayer);
 	});
 	listenToCalculatorOfferButtons();
+}
+
+function initialiseCalculator(tradingPlayer){
+	resourceOfferList = [];
+	$('.offering').html('');
+	$('.overlay').fadeIn();
+	$('.trade_menu').fadeIn();
+	initialiseCalculatorView(tradingPlayer);
 	listenToCalculatorControlButtons(tradingPlayer);
 }
 
@@ -116,23 +121,24 @@ function listenToCalculatorControlButtons(tradingPlayer){
 	$('.overlay').click(function(){
 		$('.overlay').fadeOut();
 		$('.trade_menu').fadeOut();
+		$('.offer_panel.you_give .text').html("Offering");
+		resourceOfferList = [];
+		$('.offering').html('');
 	});
 	$('.bottom_button.confirm').click(function(){
 		$('.overlay').fadeOut();
 		$('.trade_menu').fadeOut();
-		//TODO: package data properly and send to server
+		$('.offering').html('');
 	});
 	$('.bottom_button.clear').click(function(){
 		initialiseCalculatorView(tradingPlayer);
+		$('.offer_panel.you_give .text').html("Offering");
+		resourceOfferList = [];
+		$('.offering').html('');
 	});
 }
 
 function listenToCalculatorOfferButtons(){
-	var resourceOfferList = [];
-	//list MUST BE CLEARED when
-	// 1. traded
-	// 2. cleared
-	// Maybe better be put somewhere else
 	$('.your_resources .resource_count').click(function(){
 		resourceDisplay = $(this);
 		resourceType = $(this).attr('id');
@@ -149,6 +155,7 @@ function listenToCalculatorOfferButtons(){
 				offerStatement = offerStatement + " " + resourceOfferList[name] + " " + name + " ";
 			}
 			$('.offering').html(offerStatement);
+			$('.offer_panel.you_give .text').html(offerStatement);
 		}
 	});
 }

@@ -5,5 +5,6 @@ var orderedPlayersList = [];
 var lowestActionFrameZIndex = 0;
 var actionType = "";
 var currentPlayersData;
+var resourceOfferList = [];
 
 const NUM_OF_OPPONENTS = 3;
