@@ -1,0 +1,628 @@
+body, html {
+	margin: 0;
+	padding: 0;
+	background-color: #000000;
+
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none;  
+}
+
+.frame_button:hover,
+.build_buttons:hover,
+.trade_buttons:hover,
+.gather_button:hover,
+.offer_panel:hover,
+.trade_button:hover{
+	opacity: 0.7;
+}
+
+.relative_wrapper{
+	position: relative;
+}
+
+.selected{
+	opacity: 0.75;
+}
+
+.main_game {
+	position: relative;
+	width: 100vw;
+	height: 56.25vw;
+	background-color: black;
+	overflow: hidden;
+}
+
+.overlay {
+	display: none;
+	position: absolute;
+	width: 100vw;
+	height: 56.25vw;
+	background-color: black;
+	z-index: 10;
+	opacity: 0.75;
+}
+
+.main_game_background {
+	position: absolute;
+	width: 100%;
+}
+
+.top_player_panels {
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+}
+
+.top_player_panels .player_panel {
+	margin-left: 0.2vw;
+}
+
+.bottom_player_panels {
+	position: absolute;
+	width: 100%;
+	bottom: -0.3vh;
+	z-index: 2;
+}
+
+.player_panel {
+	position: relative;
+	width: 33%;
+	float: left;
+	color: #ffffff;
+}
+
+.player_panel .background {
+	width: 100%;
+}
+
+.player_panel .player_name {
+	position: absolute;
+	width: 100%;
+	font-size: 2.5vw;
+	top: 0.2vw;
+	z-index: 3;
+	text-align: center;
+}
+
+.player_panel .resource_count {
+	position: absolute;
+	font-size: 2.5vw;
+	z-index: 3;
+}
+
+.player_panel #wood {
+	top: 3.3vw;
+	left: 7vw;
+}
+
+.player_panel #iron {
+	top: 3.3vw;
+	left: 13vw;
+}
+
+.player_panel #gold {
+	top: 3.3vw;
+	left: 19.1vw;
+}
+
+.player_panel #lumber {
+	top: 10.7vw;
+	left: 6.7vw;
+}
+
+.player_panel #mithril {
+	top: 10.7vw;
+	left: 12.7vw;
+}
+
+.player_panel #treasure {
+	top: 10.7vw;
+	left: 18.6vw;
+}
+
+.player_panel .generator_count {
+	position: absolute;
+	font-size: 1.7vw;
+	z-index: 3;
+}
+
+.player_panel #woodmill {
+	top: 8.7vw;
+	left: 7.3vw;
+}
+
+.player_panel #ironforge {
+	top: 8.7vw;
+	left: 13.3vw;
+}
+
+.player_panel #goldmine {
+	top: 8.7vw;
+	left: 19.4vw;
+}
+
+.player_panel #lumbermill {
+	top: 15vw;
+	left: 7.3vw;
+}
+
+.player_panel #mithrilforge {
+	top: 15vw;
+	left: 13.3vw;
+}
+
+.player_panel #treasuremine {
+	top: 15vw;
+	left: 19.4vw;
+}
+
+.action_frame {
+	color: white;
+	-webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+.action_frame_up {
+    -webkit-transform: translate(0,-15.75vw);
+    -moz-transform: translate(0,-15.75vw);
+    -o-transform: translate(0,-15.75vw);
+    -ms-transform: translate(0,-15.75vw);
+    transform: translate(0,-15.75vw);
+}
+
+.action_frame_down {
+    -webkit-transform: translate(0,0);
+    -moz-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    transform: translate(0,0);
+}
+
+.bottom_player_panels .action_frame {
+	position: absolute;
+	left: 33vw;
+	width: 33vw;
+	height: 16.0625vw;
+	bottom: 0;
+	bottom: -15.75vw;
+}
+
+.bottom_player_panels .action_frame .background {
+	position: absolute;
+	width: 33vw;
+	height: 16.0625vw;
+}
+
+.bottom_player_panels .action_frame .frame_button {
+	margin-top: -2.9vw;
+	position: absolute;
+	cursor: pointer;
+}
+
+.bottom_player_panels .action_frame .frame_button .background {
+	position: absolute;
+	width: 11vw;
+	height: 3.33vw;
+}
+
+
+.bottom_player_panels .action_frame .frame_button .text {
+	position: absolute;
+	font-size: 2.5vw;
+	width: 11vw;
+	top: 0.4vw;
+	text-align: center;
+}
+
+.bottom_player_panels .action_frame .action_frame_left_button {
+	left: 0vw;
+}
+
+.bottom_player_panels .action_frame .action_frame_middle_button {
+	left: 11vw;
+}
+
+.bottom_player_panels .action_frame .action_frame_right_button {
+	left: 21.8vw;
+}
+
+.bottom_player_panels .action_frame_left_panel .trade_buttons {
+	position: relative;
+	float: left;
+	width: 10vw;
+	height: 10vw;
+	margin-top: 1.5vw;
+	margin-left: 0.65vw;
+	cursor: pointer;
+}
+
+.bottom_player_panels .action_frame_left_panel .trade_buttons .background{
+	position: absolute;
+	width: 10vw;
+	height: 10vw;
+}
+
+.bottom_player_panels .action_frame_left_panel .trade_buttons .text{
+	position: absolute;
+	width: 10vw;
+	top: 3.5vw;
+	text-align: center;
+	font-size: 2.5vw;
+}
+
+.bottom_player_panels .action_frame_middle_panel .build_buttons {
+	position: relative;
+	float: left;
+	width: 7.8vw;
+	height: 7.8vw;
+	margin-top: 2.8vw;
+	margin-left: 0.3vw;
+	cursor: pointer;
+}
+
+.bottom_player_panels .action_frame_middle_panel .build_buttons .background{
+	position: absolute;
+	width: 7.8vw;
+	height: 7.8vw;
+}
+
+.bottom_player_panels .action_frame_middle_panel .build_buttons .text{
+	position: absolute;
+	width: 7.8vw;
+	top: 2vw;
+	text-align: center;
+	font-size: 1.6vw;
+}
+
+.bottom_player_panels .action_frame_right_panel .gather_button {
+	position: relative;
+	float: left;
+	width: 7.8vw;
+	height: 7.8vw;
+	margin-top: 4vw;
+	margin-left: 4vw;
+	cursor: pointer;
+}
+
+.bottom_player_panels .action_frame_right_panel .gather_button .background{
+	position: absolute;
+	width: 25vw;
+	height: 5vw;
+}
+
+.bottom_player_panels .action_frame_right_panel .gather_button .text{
+	position: absolute;
+	width: 25vw;
+	top: 1.5vw;
+	text-align: center;
+	font-size: 2vw;
+}
+
+.bottom_player_panels .more_options_panel {
+	position: absolute;
+	width: 34.15vw;
+	height: 18.5625vw;
+	bottom: 0;
+	right: 0;
+	color: #ffffff;
+}
+
+.bottom_player_panels .more_options_panel .panel_background {
+	position: absolute;
+	width: 34.15vw;
+	height: 18.5625vw;
+	border-radius: 10px;
+	opacity: 0.76;
+}
+
+.bottom_player_panels .more_options_panel .more_options {
+	position: absolute;
+	display: none;
+}
+
+.bottom_player_panels .more_options_panel .more_options .title {
+	font-size: 2vw;
+	width: 34.15vw;
+	text-align: center;
+}
+
+.bottom_player_panels .more_options_panel .more_options .player_buttons {
+	width: 34.15vw;
+	margin-left: 1.7vw;
+}
+
+.bottom_player_panels .more_options_panel .more_options .public_everyone {
+	position: absolute;
+	width: 34.15vw;
+	text-align: center;
+	font-size: 2.5vw;
+}
+
+.bottom_player_panels .more_options_panel .more_options .bank_only {
+	position: absolute;
+	width: 34.15vw;
+	text-align: center;
+	font-size: 2.5vw;
+}
+
+.bottom_player_panels .more_options_panel .more_options .player_button {
+	position: relative;
+	display:inline-block;
+	width: 10vw;
+	cursor: pointer;
+}
+
+.bottom_player_panels .more_options_panel .more_options .player_button:hover {
+	opacity: 0.75;
+}
+
+.bottom_player_panels .more_options_panel .more_options .player_button .background {
+	position: absolute;
+	width: 10vw;
+	height: auto;
+}
+
+.bottom_player_panels .more_options_panel .more_options .player_button .text {
+	position: absolute;
+	width: 10vw;
+	top: 1vw;
+	text-align: center;
+	font-size: 2vw;
+}
+
+.bottom_player_panels .more_options_panel .more_options .trade_offer {
+	position: relative;
+	width: 34.15vw;
+	margin-top: 3vw;
+	margin-left: 1.7vw;
+}
+
+.bottom_player_panels .more_options_panel .more_options .trade_offer .offer_panel {
+	position: relative;
+	display: inline-block;
+	width: 15vw;
+	cursor: pointer;
+}
+
+.bottom_player_panels .more_options_panel .more_options .trade_offer .offer_panel .background {
+	position: absolute;
+	width: 15vw;
+	height: 4vw;
+	opacity: 0.5;
+}
+
+.bottom_player_panels .more_options_panel .more_options .trade_offer .offer_panel .text {
+	position: absolute;
+	width: 15vw;
+	top: 1vw;
+	text-align: center;
+	font-size: 2vw
+}
+
+.bottom_player_panels .more_options_panel .more_options .trade_button {
+	position: relative;
+	width: 15vw;
+	margin-top: 4.5vw;
+	margin-left: 9.5vw;
+	cursor: pointer;
+}
+
+.bottom_player_panels .more_options_panel .more_options .trade_button .background {
+	position: absolute;
+	width: 15vw;
+	height: 4vw;
+}
+
+.bottom_player_panels .more_options_panel .more_options .trade_button .text {
+	position: absolute;
+	width: 15vw;
+	top: 1vw;
+	text-align: center;
+	font-size: 2vw;
+}
+
+.bottom_player_panels .more_options_panel .more_options .arrow {
+	position: absolute;
+	top: 2.5vw;
+	left: 14vw;
+	width: 3vw;
+	height: auto;
+}
+
+.trade_menu {
+	display: none;
+	color: white;
+	position: absolute;
+	width: 90vw;
+	height: 43vw;
+	z-index: 11;
+	left: 0;
+  	right: 0;
+  	top: 7vw;
+  	margin: 0 auto;
+}
+
+.trade_menu .background{
+	position: absolute;
+	width: 90vw;
+	height: 43vw;
+	opacity: 0.75;
+	border-radius: 15px;
+}
+
+.trade_menu .calculator_text_field {
+	position: absolute;
+	width: 90vw;
+	top: 0.5vw;
+	text-align: center;
+	font-size: 2.5vw;
+}
+
+.trade_menu .resource_buttons {
+	position: absolute;
+	width: 90vw;
+	left: 7vw;
+	top: 4vw;
+}
+
+.trade_menu .resource_buttons .player_resources {
+	position: relative;
+	float: left;
+	width: 33vw;
+	height: auto;
+	margin: 2vw;
+}
+
+.trade_menu .resource_buttons .player_resources .background {
+	width: 33vw;
+	height: auto;
+}
+
+.trade_menu .resource_buttons .player_resources .title {
+	width: 33vw;
+	text-align: center;
+	font-size: 2.5vw;
+}
+
+.trade_menu .resource_buttons .player_resources .resource_count,
+.trade_menu .resource_buttons .player_resources .generator_count {
+	position: absolute;
+	font-size: 3vw;
+	cursor: pointer;
+	text-align: right;
+}
+
+.trade_menu .resource_buttons .player_resources .resource_count{
+	width: 10vw;
+	height: 9.2vw;
+}
+
+.trade_menu .resource_buttons .player_resources .generator_count{
+	width: 10vw;
+	height: 3.2vw;
+}
+
+.trade_menu .resource_buttons .player_resources #Wood {
+	left: 0vw;
+}
+
+.trade_menu .resource_buttons .player_resources #Iron {
+	left: 11vw;
+}
+
+.trade_menu .resource_buttons .player_resources #Gold {
+	left: 22vw;
+}
+
+.trade_menu .resource_buttons .player_resources #Lumber {
+	left: -0.5vw;
+	top: 16.5vw;
+}
+
+.trade_menu .resource_buttons .player_resources #Mithril {
+	left: 10.5vw;
+	top: 16.5vw;
+}
+
+.trade_menu .resource_buttons .player_resources #Treasure {
+	left: 21.5vw;
+	top: 16.5vw;
+}
+
+.trade_menu .resource_buttons .player_resources #Woodmill {
+	left: 0vw;
+	top: 12.4vw;
+}
+
+.trade_menu .resource_buttons .player_resources #IronForge {
+	left: 11vw;
+	top: 12.4vw;
+}
+
+.trade_menu .resource_buttons .player_resources #GoldMine {
+	left: 22vw;
+	top: 12.4vw;
+}
+
+.trade_menu .resource_buttons .player_resources #LumberMill {
+	left: 0vw;
+	top: 16.5vw;
+	top: 24vw;
+}
+
+.trade_menu .resource_buttons .player_resources #MithrilForge {
+	left: 11.5vw;
+	top: 16.5vw;
+	top: 24vw;
+}
+
+.trade_menu .resource_buttons .player_resources #TreasureMine {
+	left: 22.5vw;
+	top: 16.5vw;
+	top: 24vw;
+}
+
+.trade_menu .bottom_buttons {
+	position: absolute;
+	left: 21.75vw;
+	top: 35vw;
+}
+
+.trade_menu .bottom_buttons .bottom_button {
+	position: relative;
+	float: left;
+	margin: 1vw;
+	width: 20vw;
+	height: 5vw;
+	cursor: pointer;
+}
+
+.trade_menu .bottom_buttons .bottom_button .background {
+	position: absolute;
+	width: 20vw;
+	height: 5vw;
+}
+
+.trade_menu .bottom_buttons .bottom_button .text {
+	width: 20vw;
+	font-size: 2.5vw;
+	text-align: center;
+	top: 1.25vw;
+	position: absolute;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

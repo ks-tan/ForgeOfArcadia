@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dwarves of Arcadia</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+	<link rel="stylesheet" type="text/css" href="styles/mainGameStyle.css">
+</head>
+<body>
+	<div class="lobby">
+		<form>
+			<input class="username" type="text" name="username"><br>
+			<button class="join">Join</button>
+		</form>
+		<div class="players_list"></div>
+	</div>
+	<div class="main_game">
+		<img class="main_game_background" src="images/mainGameBackground.png">
+		<div class="overlay"></div>
+		<div class="trade_menu">
+			<div class="relative_wrapper">
+				<img class="background" src="images/cardContainer.png">
+				<div class="calculator_text_field">
+					Offering
+					<span class="offering"></span>
+					for
+					<span class="requesting"></span>
+				</div>
+				<div class="resource_buttons">
+					<div class="player_resources your_resources">
+						<div class="title">Your Resources</div>
+						<img class="background" src="images/groupResourceIcons.png">
+						<div class="resource_count" id="Wood">3</div>
+						<div class="resource_count" id="Iron">3</div>
+						<div class="resource_count" id="Gold">3</div>
+						<div class="resource_count" id="Lumber">3</div>
+						<div class="resource_count" id="Mithril">3</div>
+						<div class="resource_count" id="Treasure">3</div>
+						<div class="generator_count" id="Woodmill">3</div>
+						<div class="generator_count" id="IronForge">3</div>
+						<div class="generator_count" id="GoldMine">3</div>
+						<div class="generator_count" id="LumberMill">3</div>
+						<div class="generator_count" id="MithrilForge">3</div>
+						<div class="generator_count" id="TreasureMine">3</div>
+					</div>
+					<div class="player_resources others_resources">
+						<div class="title">Others' Resources</div>
+						<img class="background" src="images/groupResourceIcons.png">
+						<div class="resource_count" id="Wood">3</div>
+						<div class="resource_count" id="Iron">3</div>
+						<div class="resource_count" id="Gold">3</div>
+						<div class="resource_count" id="Lumber">3</div>
+						<div class="resource_count" id="Mithril">3</div>
+						<div class="resource_count" id="Treasure">3</div>
+						<div class="generator_count" id="Woodmill">3</div>
+						<div class="generator_count" id="IronForge">3</div>
+						<div class="generator_count" id="GoldMine">3</div>
+						<div class="generator_count" id="LumberMill">3</div>
+						<div class="generator_count" id="MithrilForge">3</div>
+						<div class="generator_count" id="TreasureMine">3</div>
+					</div>
+				</div>
+				<div class="bottom_buttons">
+					<div class="bottom_button clear">
+						<img class="background" src="images/brownLongButton.png">
+						<div class="text">Clear</div>
+					</div>						
+					<div class="bottom_button confirm">
+						<img class="background" src="images/greenLongButton.png">
+						<div class="text">Confirm</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="top_player_panels">
+			<div class="player_panel" id="player0">
+				<img class="background" src="images/playerPanel0.png">
+				<div class="player_name">Player</div>
+				<div class="resource_count" id="wood">0</div>
+				<div class="resource_count" id="iron">0</div>
+				<div class="resource_count" id="gold">0</div>
+				<div class="resource_count" id="lumber">3</div>
+				<div class="resource_count" id="mithril">3</div>
+				<div class="resource_count" id="treasure">3</div>
+				<div class="generator_count" id="woodmill">1</div>
+				<div class="generator_count" id="ironforge">1</div>
+				<div class="generator_count" id="goldmine">1</div>
+				<div class="generator_count" id="lumbermill">1</div>
+				<div class="generator_count" id="mithrilforge">1</div>
+				<div class="generator_count" id="treasuremine">1</div>
+			</div>
+		</div>
+		<div class="bottom_player_panels">
+			<div class="player_panel" id="my_player">
+				<img class="background" src="images/myPlayerPanel.png">
+				<div class="player_name">Player</div>
+				<div class="resource_count" id="wood">0</div>
+				<div class="resource_count" id="iron">0</div>
+				<div class="resource_count" id="gold">0</div>
+				<div class="resource_count" id="lumber">3</div>
+				<div class="resource_count" id="mithril">3</div>
+				<div class="resource_count" id="treasure">3</div>
+				<div class="generator_count" id="woodmill">1</div>
+				<div class="generator_count" id="ironforge">1</div>
+				<div class="generator_count" id="goldmine">1</div>
+				<div class="generator_count" id="lumbermill">1</div>
+				<div class="generator_count" id="mithrilforge">1</div>
+				<div class="generator_count" id="treasuremine">1</div>
+			</div>
+			<div class="action_frame_right_panel action_frame">
+				<div class="relative_wrapper">
+					<img class="background" src="images/actionFrame.png">
+					<div class="action_frame_right_button frame_button">
+						<img class="background" src="images/actionFrameButton.png">
+						<div class="text">Gather</div>
+					</div>
+					 <div class="gather_button action_panel_button" id="gather">
+					 	<img class="background" src="images/greenLongButton.png">
+					 	<div class="text">It's Harvest'ng Time!</div>
+					</div>
+				</div>
+			</div>
+			<div class="action_frame_middle_panel action_frame">
+				<div class="relative_wrapper">
+					<img class="background" src="images/actionFrame.png">
+					<div class="action_frame_middle_button frame_button">
+						<img class="background" src="images/actionFrameButton.png">
+						<div class="text">Build</div>
+					</div>
+					<div class="build_buttons action_panel_button" id="upgrade_resources">
+						<img class="background" src="images/greenSquareButton.png">
+						<div class="text">Upgrade Resource</div>
+					</div>
+					<div class="build_buttons action_panel_button" id="build_generator">
+						<img class="background" src="images/blueSquareButton.png">
+						<div class="text">Build Generator</div>
+					</div> 
+					<div class="build_buttons action_panel_button" id="upgrade_generator">
+						<img class="background" src="images/purpleSquareButton.png">
+						<div class="text">Upgrade Generator</div>
+					</div>
+					<div class="build_buttons action_panel_button" id="destroy">
+						<img class="background" src="images/redSquareButton.png">
+						<div class="text">Destroy Others</div>
+					</div>
+				</div>
+			</div>
+			<div class="action_frame_left_panel action_frame">
+				<div class="relative_wrapper">
+					<img class="background" src="images/actionFrame.png">
+					<div class="action_frame_left_button frame_button">
+						<img class="background" src="images/actionFrameButton.png">
+						<div class="text">Trade</div>
+					</div>
+					<div class="trade_buttons action_panel_button" id="private">
+						<img class="background" src="images/greenSquareButton.png">
+						<div class="text">Private</div>
+					</div>
+					<div class="trade_buttons action_panel_button" id="public">
+						<img class="background" src="images/blueSquareButton.png">
+						<div class="text">Public</div>
+					</div>
+					<div class="trade_buttons action_panel_button" id="bank">
+						<img class="background" src="images/purpleSquareButton.png">
+						<div class="text">Bank</div>
+					</div>
+				</div>
+			</div>
+			<div class="more_options_panel">
+				<div class="relative_wrapper">
+					<img class="panel_background" src="images/cardContainer.png">
+					<div class="private public bank more_options">
+						<div class="title">Trade with:</div>
+						<div class="public_everyone">Everyone</div>
+						<div class="bank_only">Bank</div>
+						<div class="player_buttons">
+							<div class="player_button">
+								<img class="background" src="images/brownLongButton.png">
+								<div class="text">Player 1</div>
+							</div>
+							<div class="player_button">
+								<img class="background" src="images/brownLongButton.png">
+								<div class="text">Player 2</div>
+							</div>
+							<div class="player_button">
+								<img class="background" src="images/brownLongButton.png">
+								<div class="text">Player 3</div>
+							</div>
+						</div>
+						<div class="trade_offer">
+							<div class="offer_panel you_give">
+								<img class="background" src="images/brownLongButton.png">
+								<div class="text">Offering</div>
+							</div>
+							<img class="arrow" src="images/greenArrow.png">
+							<div class="offer_panel you_get">
+								<img class="background" src="images/brownLongButton.png">
+								<div class="text">Requesting</div>
+							</div>
+						</div>
+						<div class="trade_button">
+							<img class="background" src="images/greenLongButton.png">
+							<div class="text">Trade</div>
+						</div>
+					</div>
+					<div class="upgrade_resources more_options">
+						<div class="title">Upgrade Resources</div>
+					</div>
+					<div class="build_generator more_options">
+						<div class="title">Build Resource Generator</div>
+					</div>
+					<div class="upgrade_generator more_options">
+						<div class="title">Upgrade Resource Generator</div>
+					</div>
+					<div class="destroy more_options">
+						<div class="title">Destroy Others</div>
+					</div>
+					<div class="gather more_options">
+						<div class="title">Gather</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="scripts/global.js"></script>
+<script src="scripts/mainGameController.js"></script>
+<script src="scripts/lobbyController.js"></script>
+</html>
