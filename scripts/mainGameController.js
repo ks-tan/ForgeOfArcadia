@@ -110,12 +110,16 @@ function listenToTradeButtons(){
 		}
 	});
 	listenToCalculatorOfferButtons();
+	listenToCalculatorRequestButtons();
 }
 
 function initialiseCalculator(tradingPlayer){
 	resourceOfferList = [];
+	resourceRequestList = [];
 	$('.offer_panel.you_give .text').html("Offering");
+	$('.offer_panel.you_get .text').html("Requesting");
 	$('.offering').html('');
+	$('.requesting').html('');
 	$('.overlay').fadeIn();
 	$('.trade_menu').fadeIn();
 	initialiseCalculatorView(tradingPlayer);
@@ -127,24 +131,31 @@ function listenToCalculatorControlButtons(tradingPlayer){
 		$('.overlay').fadeOut();
 		$('.trade_menu').fadeOut();
 		$('.offer_panel.you_give .text').html("Offering");
+		$('.offer_panel.you_get .text').html("Requesting");
 		resourceOfferList = [];
+		resourceRequestList = [];
 		$('.offering').html('');
+		$('.requesting').html('');
 	});
 	$('.bottom_button.confirm').click(function(){
 		$('.overlay').fadeOut();
 		$('.trade_menu').fadeOut();
 		$('.offering').html('');
+		$('.requesting').html('');
 	});
 	$('.bottom_button.clear').click(function(){
 		initialiseCalculatorView(tradingPlayer);
 		$('.offer_panel.you_give .text').html("Offering");
+		$('.offer_panel.you_get .text').html("Requesting");
 		resourceOfferList = [];
+		resourceRequestList = [];
 		$('.offering').html('');
+		$('.requesting').html('');
 	});
 }
 
 function listenToCalculatorOfferButtons(){
-	$('.your_resources .resource_count').click(function(){
+	$('.your_resources .calculator_button').click(function(){
 		resourceDisplay = $(this);
 		resourceType = $(this).attr('id');
 		resourceCount = parseInt($(this).html());
@@ -162,6 +173,32 @@ function listenToCalculatorOfferButtons(){
 			$('.offering').html(offerStatement);
 			$('.offer_panel.you_give .text').html(offerStatement);
 		}
+	});
+}
+
+function listenToCalculatorRequestButtons(){
+	$('.others_resources .calculator_button').click(function(){
+		resourceDisplay = $(this);
+		resourceType = $(this).attr('id');
+		resourceCount = parseInt($(this).html());
+		if (actionType == "private") {
+			if (resourceCount > 0){
+				resourceDisplay.html(--resourceCount);
+			}
+		} else {
+			resourceDisplay.html(++resourceCount);
+		}
+		if(resourceRequestList[resourceType]){
+			resourceRequestList[resourceType]++;
+		} else {
+			resourceRequestList[resourceType] = 1;
+		}
+		var requestStatement = "";
+		for (name in resourceRequestList){
+			requestStatement = requestStatement + " " + resourceRequestList[name] + " " + name + " ";
+		}
+		$('.requesting').html(requestStatement);
+		$('.offer_panel.you_get .text').html(requestStatement);
 	});
 }
 
