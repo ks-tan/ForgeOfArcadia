@@ -102,14 +102,19 @@ function listenToTradeButtons(){
 		$('.player_button').removeClass('selected');
 		$(this).addClass('selected');
 		tradingPlayer = $(this).find($('.text')).html();
-		$('.offer_panel.you_give .text').html("Offering");
 		initialiseCalculator(tradingPlayer);
+	});
+	$('.action_panel_button').click(function(){
+		if (actionType == "public" || actionType == "bank") {
+			initialiseCalculator(tradingPlayer);
+		}
 	});
 	listenToCalculatorOfferButtons();
 }
 
 function initialiseCalculator(tradingPlayer){
 	resourceOfferList = [];
+	$('.offer_panel.you_give .text').html("Offering");
 	$('.offering').html('');
 	$('.overlay').fadeIn();
 	$('.trade_menu').fadeIn();
@@ -180,7 +185,6 @@ function initialiseCalculatorView(tradingPlayer){
 		$('.others_resources').find('.resource_count').html(0);
 		$('.others_resources').find('.generator_count').html(0);
 	}
-
 }
 
 
