@@ -60,6 +60,95 @@ body, html {
 	margin-left: 0.2vw;
 }
 
+.middle_player_panels {
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+}
+
+.middle_player_panels .event_card_panel {
+	position: absolute;
+	width: 75%;
+	margin-top: 20%;
+	padding: 1%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.middle_player_panels .event_card_panel .card_one_panel,
+.middle_player_panels .event_card_panel .card_two_panel,
+.middle_player_panels .event_card_panel .card_three_panel {
+	display: inline-block;
+	position: absolute;
+	background-color: white
+}
+
+.middle_player_panels .event_card_panel .card_one_panel {
+	left: 24%;
+	margin: 1.5%;
+	width: 22%;
+	height: 72%;
+}
+
+.middle_player_panels .event_card_panel .card_two_panel {
+	left: 47%;
+	margin: 1.5%;	
+	width: 22%;
+	height: 72%;
+}
+
+.middle_player_panels .event_card_panel .card_three_panel {
+	left: 71%;
+	margin: 0.5%;
+	width: 27%;
+	height: 84%;
+}
+
+.middle_player_panels .event_card_panel .card_deck_image {
+	display: inline-block;
+	width: 22%;
+	margin: 1%;
+}
+
+.card_image {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.card_inactive_layer {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 3;
+}
+
+.card_name {
+	position: absolute;
+	width: 100%;
+	font-size: 2vw;
+	color: white;
+	text-align: center;
+}
+
+.card_name#inactive {
+	font-size: 1.8vw;
+}
+
+.card_description {
+	position: absolute;
+	width: 100%;
+	top: 20%;
+	height: 80%;
+	font-size: 1.7vw;
+	color: black;
+	text-align: center;
+}
+
+.card_description#inactive {
+	font-size: 1.5vw;
+}
+
 .bottom_player_panels {
 	position: absolute;
 	width: 100%;
